@@ -7,8 +7,83 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Replace `starlette.io` by `starlette.dev` and `uvicorn.org` by `uvicorn.dev`. PR [#14176](https://github.com/fastapi/fastapi/pull/14176) by [@Kludex](https://github.com/Kludex).
+
+### Internal
+
+* 🔧 Configure reminder for `waiting` label in `issue-manager`. PR [#14156](https://github.com/fastapi/fastapi/pull/14156) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+## 0.119.0
+
+FastAPI now (temporarily) supports both Pydantic v2 models and `pydantic.v1` models at the same time in the same app, to make it easier for any FastAPI apps still using Pydantic v1 to gradually but quickly **migrate to Pydantic v2**.
+
+```Python
+from fastapi import FastAPI
+from pydantic import BaseModel as BaseModelV2
+from pydantic.v1 import BaseModel
+
+
+class Item(BaseModel):
+    name: str
+    description: str | None = None
+
+
+class ItemV2(BaseModelV2):
+    title: str
+    summary: str | None = None
+
+
+app = FastAPI()
+
+
+@app.post("/items/", response_model=ItemV2)
+def create_item(item: Item):
+    return {"title": item.name, "summary": item.description}
+```
+
+Adding this feature was a big effort with the main objective of making it easier for the few applications still stuck in Pydantic v1 to migrate to Pydantic v2.
+
+And with this, support for **Pydantic v1 is now deprecated** and will be **removed** from FastAPI in a future version soon.
+
+**Note**: have in mind that the Pydantic team already stopped supporting Pydantic v1 for recent versions of Python, starting with Python 3.14.
+
+You can read in the docs more about how to [Migrate from Pydantic v1 to Pydantic v2](https://fastapi.tiangolo.com/how-to/migrate-from-pydantic-v1-to-pydantic-v2/).
+
+### Features
+
+* ✨ Add support for `from pydantic.v1 import BaseModel`, mixed Pydantic v1 and v2 models in the same app. PR [#14168](https://github.com/fastapi/fastapi/pull/14168) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.118.3
+
+### Upgrades
+
+* ⬆️ Add support for Python 3.14. PR [#14165](https://github.com/fastapi/fastapi/pull/14165) by [@svlandeg](https://github.com/svlandeg).
+
+## 0.118.2
+
+### Fixes
+
+* 🐛 Fix tagged discriminated union not recognized as body field. PR [#12942](https://github.com/fastapi/fastapi/pull/12942) by [@frankie567](https://github.com/frankie567).
+
+### Internal
+
+* ⬆ Bump astral-sh/setup-uv from 6 to 7. PR [#14167](https://github.com/fastapi/fastapi/pull/14167) by [@dependabot[bot]](https://github.com/apps/dependabot).
+
+## 0.118.1
+
+### Upgrades
+
+* 👽️ Ensure compatibility with Pydantic 2.12.0. PR [#14036](https://github.com/fastapi/fastapi/pull/14036) by [@cjwatson](https://github.com/cjwatson).
+
+### Docs
+
+* 📝 Add External Link: Getting started with logging in FastAPI. PR [#14152](https://github.com/fastapi/fastapi/pull/14152) by [@itssimon](https://github.com/itssimon).
+
 ### Translations
 
+* 🔨 Add Russian translations LLM prompt. PR [#13936](https://github.com/fastapi/fastapi/pull/13936) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Sync German docs. PR [#14149](https://github.com/fastapi/fastapi/pull/14149) by [@nilslindemann](https://github.com/nilslindemann).
 * 🌐 Add Russian translations for missing pages (LLM-generated). PR [#14135](https://github.com/fastapi/fastapi/pull/14135) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 🌐 Update Russian translations for existing pages (LLM-generated). PR [#14123](https://github.com/fastapi/fastapi/pull/14123) by [@YuriiMotov](https://github.com/YuriiMotov).
@@ -16,6 +91,8 @@ hide:
 
 ### Internal
 
+* 🔨 Move local coverage logic to its own script. PR [#14166](https://github.com/fastapi/fastapi/pull/14166) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#14161](https://github.com/fastapi/fastapi/pull/14161) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
 * ⬆ Bump griffe-typingdoc from 0.2.8 to 0.2.9. PR [#14144](https://github.com/fastapi/fastapi/pull/14144) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump mkdocs-macros-plugin from 1.3.9 to 1.4.0. PR [#14145](https://github.com/fastapi/fastapi/pull/14145) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump markdown-include-variants from 0.0.4 to 0.0.5. PR [#14146](https://github.com/fastapi/fastapi/pull/14146) by [@dependabot[bot]](https://github.com/apps/dependabot).
@@ -5457,7 +5534,7 @@ Note: all the previous parameters are still there, so it's still possible to dec
 
 * Upgrade the compatible version of Starlette to `0.12.0`.
     * This includes support for ASGI 3 (the latest version of the standard).
-    * It's now possible to use [Starlette's `StreamingResponse`](https://www.starlette.io/responses/#streamingresponse) with iterators, like [file-like](https://docs.python.org/3/glossary.html#term-file-like-object) objects (as those returned by `open()`).
+    * It's now possible to use [Starlette's `StreamingResponse`](https://www.starlette.dev/responses/#streamingresponse) with iterators, like [file-like](https://docs.python.org/3/glossary.html#term-file-like-object) objects (as those returned by `open()`).
     * It's now possible to use the low level utility `iterate_in_threadpool` from `starlette.concurrency` (for advanced scenarios).
     * PR [#243](https://github.com/tiangolo/fastapi/pull/243).
 
