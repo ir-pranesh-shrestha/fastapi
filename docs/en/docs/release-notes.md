@@ -7,6 +7,52 @@ hide:
 
 ## Latest Changes
 
+### Internal
+
+* ⬆ Bump mkdocs-macros-plugin from 1.4.0 to 1.4.1. PR [#14277](https://github.com/fastapi/fastapi/pull/14277) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump mkdocstrings[python] from 0.26.1 to 0.30.1. PR [#14279](https://github.com/fastapi/fastapi/pull/14279) by [@dependabot[bot]](https://github.com/apps/dependabot).
+
+## 0.120.4
+
+### Fixes
+
+* 🐛 Fix security schemes in OpenAPI when added at the top level app. PR [#14266](https://github.com/fastapi/fastapi/pull/14266) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+## 0.120.3
+
+### Refactors
+
+* ♻️ Reduce internal cyclic recursion in dependencies, from 2 functions calling each other to 1 calling itself. PR [#14256](https://github.com/fastapi/fastapi/pull/14256) by [@tiangolo](https://github.com/tiangolo).
+* ♻️ Refactor internals of dependencies, simplify code and remove `get_param_sub_dependant`. PR [#14255](https://github.com/fastapi/fastapi/pull/14255) by [@tiangolo](https://github.com/tiangolo).
+* ♻️ Refactor internals of dependencies, simplify using dataclasses. PR [#14254](https://github.com/fastapi/fastapi/pull/14254) by [@tiangolo](https://github.com/tiangolo).
+
+### Docs
+
+* 📝 Update note for untranslated pages. PR [#14257](https://github.com/fastapi/fastapi/pull/14257) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+## 0.120.2
+
+### Fixes
+
+* 🐛 Fix separation of schemas with nested models introduced in 0.119.0. PR [#14246](https://github.com/fastapi/fastapi/pull/14246) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* 🔧 Add sponsor: SerpApi. PR [#14248](https://github.com/fastapi/fastapi/pull/14248) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump actions/download-artifact from 5 to 6. PR [#14236](https://github.com/fastapi/fastapi/pull/14236) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ [pre-commit.ci] pre-commit autoupdate. PR [#14237](https://github.com/fastapi/fastapi/pull/14237) by [@pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci).
+* ⬆ Bump actions/upload-artifact from 4 to 5. PR [#14235](https://github.com/fastapi/fastapi/pull/14235) by [@dependabot[bot]](https://github.com/apps/dependabot).
+
+## 0.120.1
+
+### Upgrades
+
+* ⬆️ Bump Starlette to <`0.50.0`. PR [#14234](https://github.com/fastapi/fastapi/pull/14234) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+### Internal
+
+* 🔧 Add `license` and `license-files` to `pyproject.toml`, remove `License` from `classifiers`. PR [#14230](https://github.com/fastapi/fastapi/pull/14230) by [@YuriiMotov](https://github.com/YuriiMotov).
+
 ## 0.120.0
 
 There are no major nor breaking changes in this release. ☕️
